@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-interface Media {
+export interface Media {
   title: string;
   poster: string;
   genre: string[];
@@ -13,7 +13,7 @@ export interface dataProps {
   results: Media[];
 }
 
-interface MovieListProps {
+export interface MovieListProps {
   data: dataProps;
   page: number;
   nextPage: () => void;
@@ -26,9 +26,6 @@ const MovieList: React.FC<MovieListProps> = ({
   nextPage,
   prevPage,
 }) => {
-  useEffect(() => {
-    //console.log("data", data);
-  }, [data]);
 
   return (
     <>

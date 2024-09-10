@@ -13,31 +13,44 @@ function App() {
   const [genre, setGenre] = useState("");
   const [year, setYear] = useState("");
   const [filter, setFilter] = useState("");
+  const [mediaType, setMediaType] = useState("all");
 
   useEffect(() => {
-    getMedia(page).then((data) => {
+    getMedia(page, genre, year, filter, mediaType).then((data) => {
       setData(data);
     });
-  }, []);
+  }, [page, genre, year, filter, mediaType]);
 
   const prevPage = () => {
-    getMedia(page - 1).then((data) => {
+    getMedia(page - 1, genre, year, filter, mediaType).then((data) => {
       setData(data);
     });
     setPage(page - 1);
   };
 
   const nextPage = () => {
-    getMedia(page + 1).then((data) => {
+    getMedia(page + 1, genre, year, filter, mediaType).then((data) => {
       setData(data);
     });
     setPage(page + 1);
   };
 
+  const updateMediaType = (mediaType: string) => {
+    setMediaType(mediaType);
+  };
+  const updateFilter = (filter: string) => {
+    setFilter(filter);
+  };
+
   return (
     <>
-      <NavBar />
-      <MovieList data={data} page={page} nextPage={nextPage} prevPage={prevPage}/>
+      <NavBar setMediaType={updateMediaType} setFilter={updateFilter} />
+      <MovieList
+        data={data}
+        page={page}
+        nextPage={nextPage}
+        prevPage={prevPage}
+      />
     </>
   );
 }

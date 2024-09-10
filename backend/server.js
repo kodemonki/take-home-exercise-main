@@ -9,6 +9,7 @@ const port = process.env.SERVER_PORT || 3001;
 const apiVersion = "V1";
 const media = "media";
 const paginate = "paginate";
+const genres = "genres";
 /* config */
 
 /* cors */
@@ -21,6 +22,17 @@ app.use(cors(corsOptions));
 
 /* routes */
 app.get(`/${apiVersion}/${media}/`, (req, res) => res.json(data.media));
+
+app.get(`/${apiVersion}/${genres}/`, (req, res) => {
+  let results = [];
+  data.media.forEach((element) => {
+    element.genre.forEach((item) => {
+      results.push(item);
+    });
+  });
+  const unique = [...new Set(results)];
+  res.json(unique);
+});
 
 app.get(`/${apiVersion}/${media}/${paginate}/`, (req, res) => {
   const page = parseInt(req.query.page);
