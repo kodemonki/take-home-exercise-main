@@ -17,12 +17,14 @@ interface NavBarProps {
   setMediaType: (mediaType: string) => void;
   setFilter: (filter: string) => void;
   setGenre: (genre: string) => void;
+  setYear: (year: string) => void;
 }
 
 const NavBar: React.FC<NavBarProps> = ({
   setMediaType,
   setFilter,
   setGenre,
+  setYear,
 }) => {
   useEffect(() => {}, []);
 
@@ -33,7 +35,9 @@ const NavBar: React.FC<NavBarProps> = ({
   const handleGenre = (e) => {
     setGenre(e.target.value);
   };
-
+  const handleYear = (e) => {
+    setYear(e.target.value);
+  };
   return (
     <>
       <form
@@ -45,11 +49,13 @@ const NavBar: React.FC<NavBarProps> = ({
         <div style={formContainer}>
           <div style={leftForm}>
             <select onChange={handleGenre}>
+              <option key={"all"}>all</option>
               {config.genres.map((item) => {
                 return <option key={item}>{item}</option>;
               })}
             </select>
-            <select>
+            <select onChange={handleYear}>
+              <option key={"all"}>all</option>
               {new Array(50).fill("").map((_, index) => (
                 <option key={index}>{1980 + index}</option>
               ))}

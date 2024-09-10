@@ -39,6 +39,8 @@ app.get(`/${apiVersion}/${media}/${paginate}/`, (req, res) => {
   const limit = parseInt(req.query.limit);
   const filter = String(req.query.filter); // should sanitize this value in a real app
   const mediaType = String(req.query.mediaType); // should sanitize this value in a real app
+  const genre = String(req.query.genre); // should sanitize this value in a real app
+  const year = String(req.query.year); // should sanitize this value in a real app
 
   if (isNaN(page) || isNaN(limit)) {
     res.status(500).json({ message: "Error : missing page and limit values" });
@@ -46,6 +48,18 @@ app.get(`/${apiVersion}/${media}/${paginate}/`, (req, res) => {
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     let filteredData = [...data.media];
+
+    if (year !== "" && year !== "all" && year !== "undefined") {
+      filteredData = filteredData.filter((media) => {
+        return media.year === year;
+      });
+    }
+
+    if (genre !== "" && genre !== "all" && genre !== "undefined") {
+      filteredData = filteredData.filter((media) => {
+        return media.genre.includes(genre);
+      });
+    }
 
     if (mediaType !== "all" && mediaType !== "undefined") {
       filteredData = filteredData.filter((media) => media.type === mediaType);
