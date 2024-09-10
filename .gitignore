@@ -1,0 +1,23 @@
+# root files
+.idea
+.cache
+.parcel-cache
+.DS_Store
+
+# build directories
+dist
+build
+node_modules
+coverage
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# typescript
+*.tsbuildinfo
+
+# .env files
+.env*.local
