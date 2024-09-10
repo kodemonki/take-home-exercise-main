@@ -12,3 +12,4 @@ export const getMedia = async (
   const res = await fetch(url);
   return await res.json();
 };
+

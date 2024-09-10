@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getMedia } from "../service/apiRequests";
+import { getMedia, getGenres } from "../service/apiRequests";
 import MovieList, { dataProps } from "./MovieList";
 import NavBar from "./NavBar";
 
@@ -41,10 +41,17 @@ function App() {
   const updateFilter = (filter: string) => {
     setFilter(filter);
   };
+  const updateGenre = (genre: string) => {
+    setGenre(genre);
+  };
 
   return (
     <>
-      <NavBar setMediaType={updateMediaType} setFilter={updateFilter} />
+      <NavBar
+        setMediaType={updateMediaType}
+        setFilter={updateFilter}
+        setGenre={updateGenre}
+      />
       <MovieList
         data={data}
         page={page}

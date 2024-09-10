@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 
+import config from "../config";
+
 const leftForm = {
   width: "50%",
 };
@@ -14,13 +16,22 @@ const formContainer = {
 interface NavBarProps {
   setMediaType: (mediaType: string) => void;
   setFilter: (filter: string) => void;
+  setGenre: (genre: string) => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ setMediaType, setFilter }) => {
+const NavBar: React.FC<NavBarProps> = ({
+  setMediaType,
+  setFilter,
+  setGenre,
+}) => {
   useEffect(() => {}, []);
 
   const handleMediaType = (e: { target: { value: any } }) => {
     setMediaType(e.target.value);
+  };
+
+  const handleGenre = (e) => {
+    setGenre(e.target.value);
   };
 
   return (
@@ -33,10 +44,10 @@ const NavBar: React.FC<NavBarProps> = ({ setMediaType, setFilter }) => {
       >
         <div style={formContainer}>
           <div style={leftForm}>
-            <select>
-              <option>abc1</option>
-              <option>abc2</option>
-              <option>abc3</option>
+            <select onChange={handleGenre}>
+              {config.genres.map((item) => {
+                return <option key={item}>{item}</option>;
+              })}
             </select>
             <select>
               {new Array(50).fill("").map((_, index) => (
