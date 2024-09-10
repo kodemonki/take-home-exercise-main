@@ -1,0 +1,17 @@
+:root {
+  --text: #fff;
+  --primary: #ff5c35;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.exercise-header {
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--text);
+  background-color: var(--primary);
+}
