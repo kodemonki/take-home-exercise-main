@@ -1,14 +1,13 @@
 const config = {
   emptyDateString: "all dates",
-  dataTestIdTr : 'table-row',
-  dataTestIdSelect : 'select-option',
-  baseApiUrl: 'http://127.0.0.1:3000',
-  corsArray:['http://localhost:3000', 'http://localhost:1234']
+  baseApiUrl: "http://localhost:3001",
+  corsArray: ["http://localhost:3001", "http://localhost:1234"],
+  apiVersion: "v1",
+  apiPaginationLimit: 10
 };
 
 export const routes = {
-  schedule: "schedule",
-  trains : 'trains',
+  media: "media",
 };
 
 export default config;

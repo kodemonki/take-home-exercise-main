@@ -1,9 +1,7 @@
-import config, { routes }  from "../config";
+import config, { routes } from "../config";
 
-export const getSchedule = () => {
-  return fetch(`${config.baseApiUrl}/${routes.schedule}/`).then((res) => res.json());
-};
-
-export const getTrains = () => {
-  return fetch(`${config.baseApiUrl}/${routes.trains}/`).then((res) => res.json());
+export const getMedia = async () => {
+  const { baseApiUrl, apiVersion, apiPaginationLimit } = config;
+  const res = await fetch(`${baseApiUrl}/${apiVersion}/${routes.media}/paginate?page=1&limit=10`);
+  return await res.json();
 };
