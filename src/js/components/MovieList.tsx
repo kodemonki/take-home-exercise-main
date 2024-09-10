@@ -20,23 +20,39 @@ export interface MovieListProps {
   prevPage: () => void;
 }
 
+const image = {
+  height: "200px",
+  minHeight: "200px",
+  minWidth: "133px",
+};
+
+const movieListContainer = {
+  display: "flex",
+  flexWrap: "wrap",
+};
+
 const MovieList: React.FC<MovieListProps> = ({
   data,
   page,
   nextPage,
   prevPage,
 }) => {
-
   return (
     <>
       <br />
-      {data?.results?.map((item) => {
-        return (
-          <React.Fragment key={item.title}>
-            <span>{item.title} </span> <br />
-          </React.Fragment>
-        );
-      })}
+      <div style={movieListContainer}>
+        {data?.results?.map((item) => {
+          return (
+            <React.Fragment key={item.title}>
+              <div>
+                <img src={item.poster} style={image} />
+                <br />
+                <span>{item.title} </span>
+              </div>
+            </React.Fragment>
+          );
+        })}
+      </div>
       <br />
       <span>
         Page {page} of {data.totalPages}
