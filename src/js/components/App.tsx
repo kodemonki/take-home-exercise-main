@@ -15,15 +15,29 @@ function App() {
   const [filter, setFilter] = useState("");
 
   useEffect(() => {
-    getMedia().then((data) => {
+    getMedia(page).then((data) => {
       setData(data);
     });
   }, []);
 
+  const prevPage = () => {
+    getMedia(page - 1).then((data) => {
+      setData(data);
+    });
+    setPage(page - 1);
+  };
+
+  const nextPage = () => {
+    getMedia(page + 1).then((data) => {
+      setData(data);
+    });
+    setPage(page + 1);
+  };
+
   return (
     <>
       <NavBar />
-      <MovieList data={data} page={page} />
+      <MovieList data={data} page={page} nextPage={nextPage} prevPage={prevPage}/>
     </>
   );
 }

@@ -8,30 +8,61 @@ interface Media {
 }
 
 export interface dataProps {
-  totalMovies: number,
-  totalPages: number,
-  results: Media[]
+  totalMovies: number;
+  totalPages: number;
+  results: Media[];
 }
 
 interface MovieListProps {
   data: dataProps;
   page: number;
+  nextPage: () => void;
+  prevPage: () => void;
 }
 
-const MovieList: React.FC<MovieListProps> = ({ data, page }) => {
-
+const MovieList: React.FC<MovieListProps> = ({
+  data,
+  page,
+  nextPage,
+  prevPage,
+}) => {
   useEffect(() => {
-    console.log('data',data);
+    //console.log("data", data);
   }, [data]);
 
-  
   return (
     <>
+      <br />
       {data?.results?.map((item) => {
-        return <span key={item.title}>{item.title} </span>;
+        return (
+          <React.Fragment key={item.title}>
+            <span>{item.title} </span> <br />
+          </React.Fragment>
+        );
       })}
-
-      <span>Page {page} of {}</span>
+      <br />
+      <span>
+        Page {page} of {data.totalPages}
+      </span>
+      <br />
+      <button
+        onClick={() => {
+          if (page > 1) {
+            prevPage();
+          }
+        }}
+      >
+        Prev Page
+      </button>
+      <button
+        onClick={() => {
+          if (page < data.totalPages) {
+            nextPage();
+          }
+        }}
+      >
+        Next Page
+      </button>
     </>
   );
 };

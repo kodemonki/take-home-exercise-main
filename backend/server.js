@@ -47,7 +47,7 @@ app.get(`/${apiVersion}/${media}/${paginate}/`, (req, res) => {
 
     const results = {};
     results.totalMovies = filteredData.length;
-    results.totalPages = Math.round(filteredData.length / limit) + 1;
+    results.totalPages = Math.ceil(filteredData.length / limit);
 
     results.results = filteredData.slice(startIndex, endIndex);
     res.paginatedResults = results;
