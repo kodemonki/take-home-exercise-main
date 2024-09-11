@@ -50,7 +50,8 @@ const NavBar: React.FC<NavBarProps> = ({
         ref={formRef}
         onSubmit={(e) => {
           e.preventDefault();
-          setFilter(e.target[5].value);
+          const formData = new FormData(e.target as HTMLFormElement);
+          setFilter(formData.get('filter') as string)
         }}
       >
         <div style={formContainer}>
@@ -86,7 +87,7 @@ const NavBar: React.FC<NavBarProps> = ({
             <label htmlFor="mediaType2">Books</label>
           </div>
           <div style={rightForm}>
-            <input type="text" id="filter" />
+            <input type="text" id="filter" name="filter" />
             <br />
             <a href="void(0)" onClick={clearFilters} role="button">
               CLEAR FILTERS

@@ -8,7 +8,7 @@
     "start": "parcel serve src/views/index.html --open",
     "serve": "node backend/server.js",
     "dev": "nodemon backend/server.js",
-    "test": "echo \"No test specified, maybe you should add some? :)\" && exit 1",
+    "test": "jest -jsx",
     "db:setup": "sqlite3 database.db < create_database.sql"
   },
   "author": "HubSpot Marketing Web-Team",
@@ -22,12 +22,21 @@
     "express": "^4.19.2",
     "parcel": "^2.12.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "nodemon": "^3.1.4",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "ts-jest": "^29.2.5"
   }
 }
