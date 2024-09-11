@@ -65,19 +65,27 @@ app.get(`/${apiVersion}/${media}/${paginate}/`, (req, res) => {
       filteredData = filteredData.filter((media) => media.type === mediaType);
     }
 
+    /* Fuzzy search */
     if (filter !== "" && filter !== "undefined") {
-      filteredData = filteredData.filter((media) =>
-        media.title.toLowerCase().includes(filter.toLowerCase())
-      );
+      filteredData = filteredData.filter((media) => {
+        let chunks = filter.split(" ");
+        let found = false;
+        for (let i = 0; i < chunks.length; i++) {
+          if (media.title.toLowerCase().includes(chunks[i].toLowerCase())) {
+            found = true;
+          }
+        }
+        return found;
+      });
     }
+    /* Fuzzy search */
 
     const results = {};
     results.totalMovies = filteredData.length;
     results.totalPages = Math.ceil(filteredData.length / limit);
-
     results.results = filteredData.slice(startIndex, endIndex);
-    res.paginatedResults = results;
 
+    res.paginatedResults = results;
     res.json(res.paginatedResults);
   }
 });

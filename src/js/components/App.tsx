@@ -16,35 +16,39 @@ function App() {
   const [mediaType, setMediaType] = useState("all");
 
   useEffect(() => {
+    loadMedia();
+  }, [page, genre, year, filter, mediaType]);
+
+  const loadMedia = () => {
     getMedia(page, genre, year, filter, mediaType).then((data) => {
       setData(data);
     });
-  }, [page, genre, year, filter, mediaType]);
+  };
 
   const prevPage = () => {
-    getMedia(page - 1, genre, year, filter, mediaType).then((data) => {
-      setData(data);
-    });
     setPage(page - 1);
+    loadMedia();
   };
 
   const nextPage = () => {
-    getMedia(page + 1, genre, year, filter, mediaType).then((data) => {
-      setData(data);
-    });
     setPage(page + 1);
+    loadMedia();
   };
 
   const updateMediaType = (mediaType: string) => {
+    setPage(1);
     setMediaType(mediaType);
   };
   const updateFilter = (filter: string) => {
+    setPage(1);
     setFilter(filter);
   };
   const updateGenre = (genre: string) => {
+    setPage(1);
     setGenre(genre);
   };
   const updateYear = (year: string) => {
+    setPage(1);
     setYear(year);
   };
 

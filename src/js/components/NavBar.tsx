@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import config from "../config";
 
@@ -26,21 +26,28 @@ const NavBar: React.FC<NavBarProps> = ({
   setGenre,
   setYear,
 }) => {
-  useEffect(() => {}, []);
-
+  const formRef = useRef<HTMLFormElement>(null);
   const handleMediaType = (e: { target: { value: any } }) => {
     setMediaType(e.target.value);
   };
-
-  const handleGenre = (e) => {
+  const handleGenre = (e: { target: { value: string } }) => {
     setGenre(e.target.value);
   };
-  const handleYear = (e) => {
+  const handleYear = (e: { target: { value: string } }) => {
     setYear(e.target.value);
+  };
+  const clearFilters = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    formRef.current?.reset();
+    setMediaType("all");
+    setFilter("");
+    setGenre("");
+    setYear("");
   };
   return (
     <>
       <form
+        ref={formRef}
         onSubmit={(e) => {
           e.preventDefault();
           setFilter(e.target[5].value);
@@ -57,7 +64,7 @@ const NavBar: React.FC<NavBarProps> = ({
             <select onChange={handleYear}>
               <option key={"all"}>all</option>
               {new Array(50).fill("").map((_, index) => (
-                <option key={index}>{1980 + index}</option>
+                <option key={index}>{1981 + index}</option>
               ))}
             </select>
             <br />
@@ -77,13 +84,13 @@ const NavBar: React.FC<NavBarProps> = ({
               onChange={handleMediaType}
             />
             <label htmlFor="mediaType2">Books</label>
-            <br />
-            <input type="reset" />
           </div>
           <div style={rightForm}>
             <input type="text" id="filter" />
             <br />
-            <a>CLEAR FILTERS</a>
+            <a href="void(0)" onClick={clearFilters} role="button">
+              CLEAR FILTERS
+            </a>
           </div>
         </div>
       </form>
