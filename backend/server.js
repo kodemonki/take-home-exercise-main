@@ -1,6 +1,6 @@
-import cors from "cors";
-import express from "express";
-import data from "../src/js/data.json" assert { type: "json" };
+const cors = require('cors');
+const express = require("express");
+const data = require('../src/js/data.json')
 
 const app = express();
 
@@ -95,3 +95,4 @@ app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
 });
 
+module.exports = app;
