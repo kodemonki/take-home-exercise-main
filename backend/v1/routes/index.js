@@ -21,7 +21,7 @@ router.route("/genres/").get((req, res) => {
   res.json(unique);
 });
 
-router.route("/paginate/").get(async (req, res) => {
+router.route("/media/paginate/").get(async (req, res) => {
   const page = parseInt(req.query.page);
   const limit = parseInt(req.query.limit);
 
