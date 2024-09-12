@@ -16,6 +16,8 @@ const button = {
 const content = {
   background: "WhiteSmoke",
   position: "absolute" as const,
+  maxHeight:'450px',
+  overflowY:'scroll' as const
 };
 
 const rowItem = {
