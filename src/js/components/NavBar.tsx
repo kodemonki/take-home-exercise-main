@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
 import config from "../config";
+import DropDown from "./DropDown";
 
 const leftForm = {
   width: "50%",
@@ -15,15 +16,19 @@ const rightForm__input = {
 const formContainer = {
   display: "flex",
 };
-
 const searchWrapper = {
-  position: "relative",
+  position: "relative" as const,
 };
 const searchSvg = {
   width: "20px",
 };
-const searchInput = {};
-
+const searchInput = {
+  paddingRight: "20px",
+};
+const searchIcon = {
+  position: "absolute" as const,
+  right: "0px",
+};
 const navbarContainer = {
   borderLeft: "1px solid Gainsboro",
   borderRight: "1px solid Gainsboro",
@@ -76,18 +81,31 @@ const NavBar: React.FC<NavBarProps> = ({
       >
         <div style={formContainer}>
           <div style={leftForm}>
-            <select onChange={handleGenre}>
+            <select onChange={handleGenre} aria-label="genre">
               <option key={"all"}>all</option>
               {config.genres.map((item) => {
                 return <option key={item}>{item}</option>;
               })}
             </select>
-            <select onChange={handleYear}>
+            <select onChange={handleYear} aria-label="year">
               <option key={"all"}>all</option>
-              {new Array(50).fill("").map((_, index) => (
+              {new Array(44).fill("").map((_, index) => (
                 <option key={index}>{1981 + index}</option>
               ))}
             </select>
+            <DropDown
+              title="Genre"
+              data={config.genres.map((item) => {
+                return item;
+              })}
+            />
+            <div style={{width:'20px', display:'inline-block'}}></div>
+            <DropDown
+              title="Years"
+              data={new Array(44).fill("").map((_, index) => {
+                return String(1981 + index);
+              })}
+            />
             <br />
             <br />
             <input
@@ -113,8 +131,8 @@ const NavBar: React.FC<NavBarProps> = ({
             </label>
           </div>
           <div style={rightForm}>
-            <div className="search__wrapper">
-              <div className="search__icon">
+            <div style={searchWrapper}>
+              <div style={searchIcon}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -130,7 +148,8 @@ const NavBar: React.FC<NavBarProps> = ({
                 type="text"
                 id="filter"
                 name="filter"
-                className="search__input"
+                aria-label="search"
+                style={searchInput}
               />
             </div>
             <br />

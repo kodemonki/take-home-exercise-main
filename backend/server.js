@@ -6,7 +6,6 @@ const app = express();
 
 const port = process.env.SERVER_PORT || 3001;
 const apiVersion = "V1";
-let data;
 
 const corsOptions = {
   credentials: true,

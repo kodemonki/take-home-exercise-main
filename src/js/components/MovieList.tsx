@@ -70,6 +70,7 @@ const MovieList: React.FC<MovieListProps> = ({
                 <img
                   src={item.poster}
                   style={image}
+                  alt={item.title}
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null;
                     currentTarget.src = `https://dummyimage.com/133x200/000000/ffffff?text=${item.title}`;

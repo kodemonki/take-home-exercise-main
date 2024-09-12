@@ -1,18 +1,40 @@
 const express = require("express");
 const router = express.Router();
-const dataLocal = require("../../../src/js/data.json");
+let data;
+
+const getData = async () => {
+  //basic cache
+  if (data === undefined) {
+    try {
+      const response = await fetch(
+        "https://drive.google.com/uc?export=view&id=1c7MKP-vr3r_64aiW7TAM2VxKRP7jK-4I"
+      );
+      if (response.ok) {
+        data = await response.json();
+      } else {
+        //handle error
+      }
+    } catch (error) {
+      //handle error
+    }
+  }
+};
 
 router.route("/").get((req, res) => {
   res.send(`Media Api ${req.baseUrl}`);
 });
 
-router.route("/media/").get((req, res) => {
-  res.json(dataLocal.media);
+router.route("/media/").get(async (req, res) => {
+  await getData();
+
+  res.json(data.media);
 });
 
-router.route("/genres/").get((req, res) => {
+router.route("/genres/").get(async (req, res) => {
+  await getData();
+
   let results = [];
-  dataLocal.media.forEach((element) => {
+  data.media.forEach((element) => {
     element.genre.forEach((item) => {
       results.push(item);
     });
@@ -21,7 +43,22 @@ router.route("/genres/").get((req, res) => {
   res.json(unique);
 });
 
+router.route("/years/").get(async (req, res) => {
+  await getData();
+
+  let results = [];
+  data.media.forEach((element) => {
+    element.year.forEach((item) => {
+      results.push(item);
+    });
+  });
+  const unique = [...new Set(results)];
+  res.json(unique);
+});
+
 router.route("/media/paginate/").get(async (req, res) => {
+  await getData();
+
   const page = parseInt(req.query.page);
   const limit = parseInt(req.query.limit);
 
@@ -30,24 +67,10 @@ router.route("/media/paginate/").get(async (req, res) => {
   const genre = String(req.query.genre); // should sanitize this value in a real app
   const year = String(req.query.year); // should sanitize this value in a real app
 
-  try {
-    const response = await fetch(
-      "https://drive.google.com/uc?export=view&id=1c7MKP-vr3r_64aiW7TAM2VxKRP7jK-4I"
-    );
-    if (response.ok) {
-      data = await response.json();
-    } else {
-      console.log('Error: use local');
-      data = dataLocal;
-    }
-  } catch (error) {
-    console.log('Error: use local');
-    data = dataLocal;
-  }
-
   if (isNaN(page) || isNaN(limit)) {
     res.status(500).json({ message: "Error : missing page and limit values" });
   } else {
+
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     let filteredData = [...data.media];
