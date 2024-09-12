@@ -32,14 +32,16 @@ router.route("/media/paginate/").get(async (req, res) => {
 
   try {
     const response = await fetch(
-      "https://drive.google.com/file/d/1c7MKP-vr3r_64aiW7TAM2VxKRP7jK-4I/view?pli=1"
+      "https://drive.google.com/uc?export=view&id=1c7MKP-vr3r_64aiW7TAM2VxKRP7jK-4I"
     );
     if (response.ok) {
       data = await response.json();
     } else {
+      console.log('Error: use local');
       data = dataLocal;
     }
   } catch (error) {
+    console.log('Error: use local');
     data = dataLocal;
   }
 

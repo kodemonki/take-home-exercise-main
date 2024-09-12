@@ -100,8 +100,7 @@ const NavBar: React.FC<NavBarProps> = ({
             <label htmlFor="mediaType1">
               <b>Movies</b>
             </label>
-            &nbsp;&nbsp;{" "}
-            {/** has an issue spacing these out, this worked for now */}
+            &nbsp;&nbsp;
             <input
               type="radio"
               name="mediaType"

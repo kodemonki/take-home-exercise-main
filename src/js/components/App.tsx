@@ -16,14 +16,9 @@ function App() {
   const [mediaType, setMediaType] = useState("all");
 
   useEffect(() => {
-    loadMedia();
+    loadMediaPage(page);
   }, [page, genre, year, filter, mediaType]);
 
-  const loadMedia = () => {
-    getMedia(page, genre, year, filter, mediaType).then((data) => {
-      setData(data);
-    });
-  };
   const loadMediaPage = (newpage: number) => {
     getMedia(newpage, genre, year, filter, mediaType).then((data) => {
       setData(data);
