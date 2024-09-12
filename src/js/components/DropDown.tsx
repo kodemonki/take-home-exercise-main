@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import config from "../config";
+import { Transform } from "supertest/lib/test";
 
 const container = {
   display: "inline-block",
@@ -16,13 +17,18 @@ const button = {
 const content = {
   background: "WhiteSmoke",
   position: "absolute" as const,
-  maxHeight:'450px',
-  overflowY:'scroll' as const
+  maxHeight: "450px",
+  overflowY: "scroll" as const,
 };
 
 const rowItem = {
   padding: "10px 20px",
   minWidth: "120px",
+};
+
+const stretchedChar = {
+  transform: "scaleX(2) scaleY(-1) translate(4px,2px)" as const,
+  display: "inline-block",
 };
 
 interface DDProps {
@@ -45,27 +51,32 @@ const DropDown: React.FC<DDProps> = ({ title, data }) => {
   return (
     <div style={container}>
       <div onClick={handleClick} style={button}>
-        <b>{title} ^</b>
+        <b>{title}</b> <span style={stretchedChar}>^</span>
       </div>
       <div style={{ ...content, ...{ visibility: panelVisibility } }}>
-          <div style={rowItem}>
-            <input type="checkbox" id={`${title}all`} name={`${title}all`} value="all" />
-            <label htmlFor={`${title}all`}>all</label>
-          </div>
-          {data.map((item, index) => {
-            return (
-              <div key={item} style={rowItem}>
-                <input
-                  type="checkbox"
-                  id={`${title}${index}`}
-                  name={`${title}${index}`}
-                  value={item}
-                />
-                <label htmlFor={`${title}${index}`}>{item}</label>
-                <br />
-              </div>
-            );
-          })}
+        <div style={rowItem}>
+          <input
+            type="checkbox"
+            id={`${title}all`}
+            name={`${title}all`}
+            value="all"
+          />
+          <label htmlFor={`${title}all`}>all</label>
+        </div>
+        {data.map((item, index) => {
+          return (
+            <div key={item} style={rowItem}>
+              <input
+                type="checkbox"
+                id={`${title}${index}`}
+                name={`${title}${index}`}
+                value={item}
+              />
+              <label htmlFor={`${title}${index}`}>{item}</label>
+              <br />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
