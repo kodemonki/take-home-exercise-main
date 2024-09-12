@@ -57,11 +57,13 @@ button {
 /* On mouse-over, add a grey background color */
 .checkboxContainer:hover input ~ .checkmark {
   background-color: white;
+  border: 1px solid Gainsboro;
 }
 
 /* When the checkbox is checked, add a teal background */
 .checkboxContainer input:checked ~ .checkmark {
   background-color: white;
+  border: 1px solid Gainsboro;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */

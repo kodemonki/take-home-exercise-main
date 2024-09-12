@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import config from "../config";
 import DropDown from "./DropDown";
@@ -57,6 +57,7 @@ const NavBar: React.FC<NavBarProps> = ({
   setYear,
 }) => {
   const formRef = useRef<HTMLFormElement>(null);
+  const [openPanel, setOpenPanel] = useState("");
   const handleMediaType = (e: { target: { value: any } }) => {
     setMediaType(e.target.value);
   };
@@ -73,6 +74,12 @@ const NavBar: React.FC<NavBarProps> = ({
     setFilter("");
     setGenre("");
     setYear("");
+  };
+  const openYears = () => {
+    setOpenPanel("Years");
+  };
+  const openGenres = () => {
+    setOpenPanel("Genres");
   };
   return (
     <div style={navbarContainer}>
@@ -99,17 +106,21 @@ const NavBar: React.FC<NavBarProps> = ({
               ))}
             </select>
             <DropDown
-              title="Genre"
+              open={openPanel === "Genres"}
+              title="Genres"
               data={config.genres.map((item) => {
                 return item;
               })}
+              onOpen={openGenres}
             />
             <div style={spacer}></div>
             <DropDown
+              open={openPanel === "Years"}
               title="Years"
               data={new Array(44).fill("").map((_, index) => {
                 return String(1981 + index);
               })}
+              onOpen={openYears}
             />
             <br />
             <br />
