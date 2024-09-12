@@ -24,15 +24,20 @@ function App() {
       setData(data);
     });
   };
+  const loadMediaPage = (newpage: number) => {
+    getMedia(newpage, genre, year, filter, mediaType).then((data) => {
+      setData(data);
+    });
+  };
 
   const prevPage = () => {
     setPage(page - 1);
-    loadMedia();
+    loadMediaPage(page - 1)
   };
 
   const nextPage = () => {
     setPage(page + 1);
-    loadMedia();
+    loadMediaPage(page + 1);
   };
 
   const updateMediaType = (mediaType: string) => {
