@@ -55,25 +55,30 @@ const DropDown: React.FC<DDProps> = ({ title, data }) => {
       </div>
       <div style={{ ...content, ...{ visibility: panelVisibility } }}>
         <div style={rowItem}>
-          <input
-            type="checkbox"
-            id={`${title}all`}
-            name={`${title}all`}
-            value="all"
-          />
-          <label htmlFor={`${title}all`}>all</label>
+          <label className="checkboxContainer">
+            <input
+              type="checkbox"
+              id={`${title}all`}
+              name={`${title}all`}
+              value="all"
+            />
+            <span className="checkmark"></span>
+            all
+          </label>
         </div>
         {data.map((item, index) => {
           return (
             <div key={item} style={rowItem}>
-              <input
-                type="checkbox"
-                id={`${title}${index}`}
-                name={`${title}${index}`}
-                value={item}
-              />
-              <label htmlFor={`${title}${index}`}>{item}</label>
-              <br />
+              <label className="checkboxContainer">
+                <input
+                  type="checkbox"
+                  id={`${title}${index}`}
+                  name={`${title}${index}`}
+                  value={item}
+                />
+                <span className="checkmark"></span>
+                {item}
+              </label>
             </div>
           );
         })}

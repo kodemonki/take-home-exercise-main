@@ -38,6 +38,11 @@ const navbarContainer = {
 const navBar__input = {
   marginRight: "20px",
 };
+const spacer = {
+  width: "20px",
+  display: "inline-block",
+};
+
 interface NavBarProps {
   setMediaType: (mediaType: string) => void;
   setFilter: (filter: string) => void;
@@ -99,7 +104,7 @@ const NavBar: React.FC<NavBarProps> = ({
                 return item;
               })}
             />
-            <div style={{width:'20px', display:'inline-block'}}></div>
+            <div style={spacer}></div>
             <DropDown
               title="Years"
               data={new Array(44).fill("").map((_, index) => {
