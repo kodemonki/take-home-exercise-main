@@ -5,7 +5,7 @@
 
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .exercise-header {
@@ -14,4 +14,19 @@ body {
   text-align: center;
   color: var(--text);
   background-color: var(--primary);
+}
+
+button {
+  padding: 8px 16px;
+}
+
+.search__wrapper {
+  position: relative;
+}
+.search__icon {
+  position: absolute;
+  right: 0px;
+}
+.search__input {
+  padding-right: 20px;
 }

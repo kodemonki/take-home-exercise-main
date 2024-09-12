@@ -5,6 +5,7 @@ export interface Media {
   poster: string;
   genre: string[];
   type: string;
+  year: string;
 }
 
 export interface dataProps {
@@ -19,34 +20,40 @@ export interface MovieListProps {
   nextPage: () => void;
   prevPage: () => void;
 }
+
 const image = {
   height: "390px",
 };
-
 const title = {
   maxWidth: "240px",
+  marginTop: '10px',
+  marginBottom: '0px',
+  fontSize: '16px'
 };
-
 const genres = {
   maxWidth: "240px",
+  marginTop: '5px',
+  fontSize: '14px'
 };
-
 const movieListContainer = {
   display: "flex",
   flexWrap: "wrap" as const,
   alignItems: "center",
   justifyContent: "space-around",
+  border:"1px solid Gainsboro",
+  padding: "20px",
 };
-
 const movieListItem = {};
 const pagination = {
   width: "100%",
   textAlign: "center" as const,
+  marginBottom:'20px'
 };
 const paginationInner = {
   paddingLeft: "10px",
   paddingRight: "10px",
 };
+
 const MovieList: React.FC<MovieListProps> = ({
   data,
   page,
@@ -55,7 +62,6 @@ const MovieList: React.FC<MovieListProps> = ({
 }) => {
   return (
     <>
-      <br />
       <div style={movieListContainer}>
         {data?.results?.map((item) => {
           return (
@@ -69,8 +75,8 @@ const MovieList: React.FC<MovieListProps> = ({
                     currentTarget.src = `https://dummyimage.com/133x200/000000/ffffff?text=${item.title}`;
                   }}
                 />
-                <p style={title}>{item.title} </p>
-                <p style={genres}>{item.genre.join(", ")} </p>
+                <p style={title}><b>{item.title} ({item.year})</b></p>
+                <p style={genres}><b>Genres: {item.genre.join(", ")}</b></p>
               </div>
             </React.Fragment>
           );

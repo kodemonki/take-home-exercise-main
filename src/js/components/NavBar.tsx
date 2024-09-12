@@ -9,10 +9,30 @@ const rightForm = {
   width: "50%",
   textAlign: "right" as const,
 };
+const rightForm__input = {
+  minWidth: "180px",
+};
 const formContainer = {
   display: "flex",
 };
 
+const searchWrapper = {
+  position: "relative",
+};
+const searchSvg = {
+  width: "20px",
+};
+const searchInput = {};
+
+const navbarContainer = {
+  borderLeft: "1px solid Gainsboro",
+  borderRight: "1px solid Gainsboro",
+  borderTop: "1px solid Gainsboro",
+  padding: "20px",
+};
+const navBar__input = {
+  marginRight: "20px",
+};
 interface NavBarProps {
   setMediaType: (mediaType: string) => void;
   setFilter: (filter: string) => void;
@@ -45,13 +65,13 @@ const NavBar: React.FC<NavBarProps> = ({
     setYear("");
   };
   return (
-    <>
+    <div style={navbarContainer}>
       <form
         ref={formRef}
         onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData(e.target as HTMLFormElement);
-          setFilter(formData.get('filter') as string)
+          setFilter(formData.get("filter") as string);
         }}
       >
         <div style={formContainer}>
@@ -69,6 +89,7 @@ const NavBar: React.FC<NavBarProps> = ({
               ))}
             </select>
             <br />
+            <br />
             <input
               type="radio"
               name="mediaType"
@@ -76,7 +97,11 @@ const NavBar: React.FC<NavBarProps> = ({
               value="movie"
               onChange={handleMediaType}
             />
-            <label htmlFor="mediaType1">Movies</label>
+            <label htmlFor="mediaType1">
+              <b>Movies</b>
+            </label>
+            &nbsp;&nbsp;{" "}
+            {/** has an issue spacing these out, this worked for now */}
             <input
               type="radio"
               name="mediaType"
@@ -84,18 +109,39 @@ const NavBar: React.FC<NavBarProps> = ({
               value="book"
               onChange={handleMediaType}
             />
-            <label htmlFor="mediaType2">Books</label>
+            <label htmlFor="mediaType2">
+              <b>Books</b>
+            </label>
           </div>
           <div style={rightForm}>
-            <input type="text" id="filter" name="filter" />
+            <div className="search__wrapper">
+              <div className="search__icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  id="search"
+                  style={searchSvg}
+                >
+                  <g>
+                    <path d="m20.71 19.29-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"></path>
+                  </g>
+                </svg>
+              </div>
+              <input
+                type="text"
+                id="filter"
+                name="filter"
+                className="search__input"
+              />
+            </div>
             <br />
             <a href="void(0)" onClick={clearFilters} role="button">
-              CLEAR FILTERS
+              <b>CLEAR FILTERS</b>
             </a>
           </div>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 
