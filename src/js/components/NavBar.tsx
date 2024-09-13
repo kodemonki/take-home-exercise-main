@@ -78,8 +78,16 @@ const NavBar: React.FC<NavBarProps> = ({
   const openYears = () => {
     setOpenPanel("Years");
   };
+  const onChangedYears = (values) => {
+    //console.log('onChangedYears',values);
+    setYear(values)
+  };
   const openGenres = () => {
     setOpenPanel("Genres");
+  };
+  const onChangedGenres = (values) => {
+    //console.log('onChangedGenres',values);
+    setGenre(values)
   };
   return (
     <div style={navbarContainer}>
@@ -112,6 +120,7 @@ const NavBar: React.FC<NavBarProps> = ({
                 return item;
               })}
               onOpen={openGenres}
+              onChanged={onChangedGenres}
             />
             <div style={spacer}></div>
             <DropDown
@@ -121,6 +130,7 @@ const NavBar: React.FC<NavBarProps> = ({
                 return String(1981 + index);
               })}
               onOpen={openYears}
+              onChanged={onChangedYears}
             />
             <br />
             <br />

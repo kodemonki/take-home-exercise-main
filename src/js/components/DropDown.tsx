@@ -14,24 +14,18 @@ const button = {
 };
 
 const content = {
+  boxSizing: "border-box" as const,
   background: "WhiteSmoke",
   position: "absolute" as const,
   maxHeight: "450px",
   overflowY: "scroll" as const,
   top: "60px",
-};
-
-const rowItemTop = {
-  padding: "10px 20px",
-  minWidth: "120px",
-  border: "1px solid Gainsboro",
+  border: "1px solid LightGrey",
 };
 
 const rowItem = {
   padding: "10px 20px",
   minWidth: "120px",
-  borderLeft: "1px solid Gainsboro",
-  borderRight: "1px solid Gainsboro",
   borderBottom: "1px solid Gainsboro",
 };
 
@@ -46,6 +40,7 @@ const rotatedSquareContainer = {
   width: "60px",
   height: "20px",
 };
+
 const rotatedSquare = {
   width: "50px",
   height: "50px",
@@ -54,20 +49,28 @@ const rotatedSquare = {
   transform: "rotate(45deg)",
   border: "1px solid Gainsboro",
   marginTop: "15px",
-  marginLeft:'6px'
+  marginLeft: "6px",
 };
 
 interface DDProps {
   title: string;
   data: string[];
   onOpen: () => void;
+  onChanged: (values: string[]) => void;
   open: boolean;
 }
 
-const DropDown: React.FC<DDProps> = ({ title, data, onOpen, open }) => {
+const DropDown: React.FC<DDProps> = ({
+  title,
+  data,
+  onOpen,
+  open,
+  onChanged,
+}) => {
   const [panelVisibility, setPanelVisibility] = useState(
     ("hidden" as const) || ("visible" as const)
   );
+  const [selected, setSelected] = useState<string[]>([]);
 
   const handleClick = () => {
     if (panelVisibility === "hidden") {
@@ -76,6 +79,17 @@ const DropDown: React.FC<DDProps> = ({ title, data, onOpen, open }) => {
     } else {
       setPanelVisibility("hidden");
     }
+  };
+
+  const handleSelection = (e) => {
+    let newArray = [...selected];
+    if (e.target.checked) {
+      newArray.push(e.target.value);
+    } else {
+      newArray = selected.filter((item) => item != e.target.value);
+    }
+    onChanged(newArray);
+    setSelected(newArray);
   };
 
   useEffect(() => {
@@ -92,13 +106,14 @@ const DropDown: React.FC<DDProps> = ({ title, data, onOpen, open }) => {
         <b>{title}</b> <span style={stretchedChar}>^</span>
       </div>
       <div style={{ ...content, ...{ visibility: panelVisibility } }}>
-        <div style={rowItemTop}>
+        <div style={rowItem}>
           <label className="checkboxContainer">
             <input
               type="checkbox"
               id={`${title}all`}
               name={`${title}all`}
               value="all"
+              onClick={handleSelection}
             />
             <span className="checkmark"></span>
             all
@@ -113,6 +128,7 @@ const DropDown: React.FC<DDProps> = ({ title, data, onOpen, open }) => {
                   id={`${title}${index}`}
                   name={`${title}${index}`}
                   value={item}
+                  onClick={handleSelection}
                 />
                 <span className="checkmark"></span>
                 {item}
