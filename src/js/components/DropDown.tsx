@@ -120,7 +120,7 @@ const DropDown: React.FC<DDProps> = ({
               onClick={handleSelection}
             />
             <span className="checkmark"></span>
-            all
+            <b>all</b>
           </label>
         </div>
         {data.map((item, index) => {
@@ -135,7 +135,7 @@ const DropDown: React.FC<DDProps> = ({
                   onClick={handleSelection}
                 />
                 <span className="checkmark"></span>
-                {item}
+                <b>{item}</b>
               </label>
             </div>
           );

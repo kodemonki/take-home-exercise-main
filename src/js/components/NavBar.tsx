@@ -23,11 +23,13 @@ const searchSvg = {
   width: "20px",
 };
 const searchInput = {
-  paddingRight: "20px",
+  padding: "8px 16px",
+  fontSize: "16px",
 };
 const searchIcon = {
   position: "absolute" as const,
-  right: "0px",
+  right: "4px",
+  top: "10px",
 };
 const navbarContainer = {
   borderLeft: "1px solid Gainsboro",
@@ -79,13 +81,13 @@ const NavBar: React.FC<NavBarProps> = ({
     setOpenPanel("Years");
   };
   const onChangedYears = (values) => {
-    setYear(values)
+    setYear(values);
   };
   const openGenres = () => {
     setOpenPanel("Genres");
   };
   const onChangedGenres = (values) => {
-    setGenre(values)
+    setGenre(values);
   };
   return (
     <div style={navbarContainer}>
@@ -132,7 +134,6 @@ const NavBar: React.FC<NavBarProps> = ({
               onOpen={openYears}
               onChanged={onChangedYears}
             />
-            <br />
             <br />
             <input
               type="radio"
