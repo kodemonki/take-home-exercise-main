@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const localData = require("../../../src/js/data.json");
 let data;
+
 
 const getData = async () => {
   //basic cache
@@ -13,9 +15,11 @@ const getData = async () => {
         data = await response.json();
       } else {
         //handle error
+        data = localData;
       }
     } catch (error) {
       //handle error
+        data = localData;
     }
   }
 };
@@ -48,9 +52,7 @@ router.route("/years/").get(async (req, res) => {
 
   let results = [];
   data.media.forEach((element) => {
-    element.year.forEach((item) => {
-      results.push(item);
-    });
+    results.push(element.year);   
   });
   const unique = [...new Set(results)];
   res.json(unique);

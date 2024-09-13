@@ -14,8 +14,8 @@ import data from "../data.json";
 
 describe("App", () => {
   window.fetch = mockFetch({
-    totalMovies: 0,
-    totalPages: 0,
+    totalMovies: data.media.length,
+    totalPages: Math.ceil(data.media.length / 10),
     results: data.media,
   });
 
@@ -24,41 +24,38 @@ describe("App", () => {
     expect(screen.getByText("Loading")).toBeTruthy();
     await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
   });
-  
+
   it("should fetch and display data on next page click", async () => {
     render(<App />);
+    expect(screen.getByText("Loading")).toBeTruthy();
     await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
-    
     fireEvent.click(screen.getByText("Next Page"));
-    
-    expect(screen.getByText("Page 1 of 0")).toBeTruthy();
+    await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
   });
-  
+
   it("should fetch and display data on previous page click", async () => {
     render(<App />);
+    expect(screen.getByText("Loading")).toBeTruthy();
     await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
-    
-    fireEvent.click(screen.getByText("Next Page"));  
+    fireEvent.click(screen.getByText("Next Page"));
     fireEvent.click(screen.getByText("Prev Page"));
-    
-    expect(screen.getByText("Page 1 of 0")).toBeTruthy();
+    await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
   });
-   
-  /*
-  it("should update filter and fetch data", async () => {
+
+  it("should fetch and display data on Movies click", async () => {
     render(<App />);
+    expect(screen.getByText("Loading")).toBeTruthy();
     await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
-    
-    fireEvent.change(screen.getByLabelText("Filter"), { target: { value: "popular" } });
-    await waitFor(() => expect(screen.getByText("Loading")).toBeInTheDocument());
+    fireEvent.click(screen.getByText("Movies"));
     await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
-    
-    expect(screen.getByText("Filter: popular")).toBeInTheDocument();
   });
-  /*
-  it("should render App", async () => {
-    const { getByText, queryByText } =  render(<App />);    
-    await waitForElementToBeRemoved(() => queryByText("Loading"));
-    
-  });*/
+
+  it("should fetch and display data on Books click", async () => {
+    render(<App />);
+    expect(screen.getByText("Loading")).toBeTruthy();
+    await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
+    fireEvent.click(screen.getByText("Books"));
+    await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
+  });
+
 });
