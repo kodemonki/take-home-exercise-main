@@ -61,7 +61,12 @@ interface DDProps {
   depth: number;
 }
 
-type VisibilityOptions = 'visible' | 'hidden' | 'collapse' | 'initial' | 'inherit'
+type VisibilityOptions =
+  | "visible"
+  | "hidden"
+  | "collapse"
+  | "initial"
+  | "inherit";
 
 const DropDown: React.FC<DDProps> = ({
   title,
@@ -71,7 +76,8 @@ const DropDown: React.FC<DDProps> = ({
   onChanged,
   depth,
 }) => {
-  const [panelVisibility, setPanelVisibility] = useState<VisibilityOptions>("hidden");
+  const [panelVisibility, setPanelVisibility] =
+    useState<VisibilityOptions>("hidden");
   const [selected, setSelected] = useState<string[]>([]);
 
   const handleClick = () => {
@@ -116,9 +122,9 @@ const DropDown: React.FC<DDProps> = ({
       <div onClick={handleClick} style={button}>
         {allSelected && <b>{title.toUpperCase()}</b>}
         {!allSelected && (
-          <b>
+          <>
             {selected.length > 0 ? selected.length : ""} {title.toUpperCase()}
-          </b>
+          </>
         )}{" "}
         <span style={stretchedChar}>^</span>
       </div>

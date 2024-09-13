@@ -63,6 +63,7 @@ const MovieList: React.FC<MovieListProps> = ({
   return (
     <>
       <div style={movieListContainer}>
+        {data?.results?.length === 0 && <p>Loading</p>}
         {data?.results?.map((item) => {
           return (
             <React.Fragment key={item.title}>

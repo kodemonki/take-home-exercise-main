@@ -5,7 +5,6 @@ import MovieList from "./MovieList";
 import data from '../data.json'
 
 describe("MovieList", () => {
-  
   it("should display the correct number of movies", () => {
     let apiResponse = {
       totalMovies: 10,

@@ -1,8 +1,8 @@
 export function mockFetch(data: any) {
-  return jest.fn().mockImplementation(() =>
-    Promise.resolve({
+  return jest.fn().mockImplementation(() =>{
+    return Promise.resolve({
       ok: true,
       json: () => data,
-    })
+    })}
   );
 }

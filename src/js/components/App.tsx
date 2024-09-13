@@ -19,7 +19,16 @@ function App() {
     loadMediaPage(page);
   }, [page, genre, year, filter, mediaType]);
 
+  useEffect(() => {
+    loadMediaPage(1);
+  }, []);
+
   const loadMediaPage = (newpage: number) => {
+    setData({
+      totalMovies: 0,
+      totalPages: 0,
+      results: [],
+    })
     getMedia(newpage, genre, year, filter, mediaType).then((data) => {
       setData(data);
     });

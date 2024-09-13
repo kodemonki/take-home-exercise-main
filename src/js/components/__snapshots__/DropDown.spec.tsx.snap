@@ -8,10 +8,7 @@ exports[`DropDown Component renders DropDown component 1`] = `
     <div
       style="background: WhiteSmoke; border-bottom: 2px solid LightGrey; padding: 10px 20px; cursor: pointer;"
     >
-      <b>
-         TEST
-      </b>
-       
+       TEST 
       <span
         style="transform: scaleX(2) scaleY(-1) translate(4px,2px); display: inline-block;"
       >
