@@ -79,14 +79,12 @@ const NavBar: React.FC<NavBarProps> = ({
     setOpenPanel("Years");
   };
   const onChangedYears = (values) => {
-    //console.log('onChangedYears',values);
     setYear(values)
   };
   const openGenres = () => {
     setOpenPanel("Genres");
   };
   const onChangedGenres = (values) => {
-    //console.log('onChangedGenres',values);
     setGenre(values)
   };
   return (
@@ -101,6 +99,7 @@ const NavBar: React.FC<NavBarProps> = ({
       >
         <div style={formContainer}>
           <div style={leftForm}>
+            {/* Native Select component approach
             <select onChange={handleGenre} aria-label="genre">
               <option key={"all"}>all</option>
               {config.genres.map((item) => {
@@ -113,6 +112,7 @@ const NavBar: React.FC<NavBarProps> = ({
                 <option key={index}>{1981 + index}</option>
               ))}
             </select>
+            */}
             <DropDown
               open={openPanel === "Genres"}
               title="Genres"

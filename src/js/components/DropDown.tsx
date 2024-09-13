@@ -92,6 +92,10 @@ const DropDown: React.FC<DDProps> = ({
     setSelected(newArray);
   };
 
+  const handleMouseLeave = () => {
+    setPanelVisibility("hidden");
+  };
+
   useEffect(() => {
     if (open) {
       setPanelVisibility("visible");
@@ -101,7 +105,7 @@ const DropDown: React.FC<DDProps> = ({
   }, [open]);
 
   return (
-    <div style={container}>
+    <div style={container} onMouseLeave={handleMouseLeave}>
       <div onClick={handleClick} style={button}>
         <b>{title}</b> <span style={stretchedChar}>^</span>
       </div>

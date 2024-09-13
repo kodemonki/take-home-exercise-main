@@ -70,21 +70,38 @@ router.route("/media/paginate/").get(async (req, res) => {
   if (isNaN(page) || isNaN(limit)) {
     res.status(500).json({ message: "Error : missing page and limit values" });
   } else {
-
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     let filteredData = [...data.media];
 
     if (year !== "" && year !== "all" && year !== "undefined") {
-      filteredData = filteredData.filter((media) => {
-        return media.year === year;
-      });
+      if (!year.includes("all")) {
+        const yearArray = year.split(",");
+        filteredData = filteredData.filter((media) => {
+          let found = false;
+          for (let i in yearArray) {
+            if (media.year === yearArray[i]) {
+              found = true;
+            }
+          }
+          return found;
+        });
+      }
     }
 
-    if (genre !== "" && genre !== "all" && genre !== "undefined") {
-      filteredData = filteredData.filter((media) => {
-        return media.genre.includes(genre);
-      });
+    if (genre !== "" && genre !== "undefined") {
+      if (!genre.includes("all")) {
+        const genreArray = genre.split(",");
+        filteredData = filteredData.filter((media) => {
+          let found = false;
+          for (let i in genreArray) {
+            if (media.genre.includes(genreArray[i])) {
+              found = true;
+            }
+          }
+          return found;
+        });
+      }
     }
 
     if (mediaType !== "all" && mediaType !== "undefined") {
