@@ -25,7 +25,7 @@ const content = {
 
 const rowItem = {
   padding: "10px 20px",
-  minWidth: "120px",
+  minWidth: "80px",
   borderBottom: "1px solid Gainsboro",
 };
 
@@ -58,6 +58,7 @@ interface DDProps {
   onOpen: () => void;
   onChanged: (values: string[]) => void;
   open: boolean;
+  depth:number;
 }
 
 const DropDown: React.FC<DDProps> = ({
@@ -66,6 +67,7 @@ const DropDown: React.FC<DDProps> = ({
   onOpen,
   open,
   onChanged,
+  depth
 }) => {
   const [panelVisibility, setPanelVisibility] = useState(
     ("hidden" as const) || ("visible" as const)
@@ -105,9 +107,9 @@ const DropDown: React.FC<DDProps> = ({
   }, [open]);
 
   return (
-    <div style={container} onMouseLeave={handleMouseLeave}>
+    <div style={{ ...container, ...{ zIndex: depth } }}  onMouseLeave={handleMouseLeave}>
       <div onClick={handleClick} style={button}>
-        <b>{title}</b> <span style={stretchedChar}>^</span>
+        <b>{selected.length > 0 ? selected.length : ''} {title}</b> <span style={stretchedChar}>^</span>
       </div>
       <div style={{ ...content, ...{ visibility: panelVisibility } }}>
         <div style={rowItem}>

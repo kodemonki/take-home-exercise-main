@@ -123,6 +123,7 @@ const NavBar: React.FC<NavBarProps> = ({
               })}
               onOpen={openGenres}
               onChanged={onChangedGenres}
+              depth={2}
             />
             <div style={spacer}></div>
             <DropDown
@@ -133,6 +134,7 @@ const NavBar: React.FC<NavBarProps> = ({
               })}
               onOpen={openYears}
               onChanged={onChangedYears}
+              depth={1}
             />
             <br />
             <input
