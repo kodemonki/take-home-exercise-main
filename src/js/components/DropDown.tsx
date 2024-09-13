@@ -58,7 +58,7 @@ interface DDProps {
   onOpen: () => void;
   onChanged: (values: string[]) => void;
   open: boolean;
-  depth:number;
+  depth: number;
 }
 
 const DropDown: React.FC<DDProps> = ({
@@ -67,7 +67,7 @@ const DropDown: React.FC<DDProps> = ({
   onOpen,
   open,
   onChanged,
-  depth
+  depth,
 }) => {
   const [panelVisibility, setPanelVisibility] = useState(
     ("hidden" as const) || ("visible" as const)
@@ -106,10 +106,21 @@ const DropDown: React.FC<DDProps> = ({
     }
   }, [open]);
 
+  const allSelected = selected.includes("all");
+
   return (
-    <div style={{ ...container, ...{ zIndex: depth } }}  onMouseLeave={handleMouseLeave}>
+    <div
+      style={{ ...container, ...{ zIndex: depth } }}
+      onMouseLeave={handleMouseLeave}
+    >
       <div onClick={handleClick} style={button}>
-        <b>{selected.length > 0 ? selected.length : ''} {title.toUpperCase()}</b> <span style={stretchedChar}>^</span>
+        {allSelected && <b>{title.toUpperCase()}</b>}
+        {!allSelected && (
+          <b>
+            {selected.length > 0 ? selected.length : ""} {title.toUpperCase()}
+          </b>
+        )}{" "}
+        <span style={stretchedChar}>^</span>
       </div>
       <div style={{ ...content, ...{ visibility: panelVisibility } }}>
         <div style={rowItem}>
