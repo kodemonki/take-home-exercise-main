@@ -98,6 +98,7 @@ const NavBar: React.FC<NavBarProps> = ({
           const formData = new FormData(e.target as HTMLFormElement);
           setFilter(formData.get("filter") as string);
         }}
+        role="form"
       >
         <div style={formContainer}>
           <div style={leftForm}>
