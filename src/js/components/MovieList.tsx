@@ -92,10 +92,10 @@ const MovieList: React.FC<MovieListProps> = ({
             }
           }}
         >
-          Prev Page
+          <b>Prev Page</b>
         </button>
         <span style={paginationInner}>
-          Page {page} of {data.totalPages}
+          <b>Page {page} of {data.totalPages}</b>
         </span>
         <button
           onClick={() => {
@@ -104,7 +104,7 @@ const MovieList: React.FC<MovieListProps> = ({
             }
           }}
         >
-          Next Page
+          <b>Next Page</b>
         </button>
       </div>
     </>

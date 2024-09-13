@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropDown Component renders DropDown component 1`] = `
+<DocumentFragment>
+  <div
+    style="display: inline-block; position: relative; z-index: 1;"
+  >
+    <div
+      style="background: WhiteSmoke; border-bottom: 2px solid LightGrey; padding: 10px 20px; cursor: pointer;"
+    >
+      <b>
+         TEST
+      </b>
+       
+      <span
+        style="transform: scaleX(2) scaleY(-1) translate(4px,2px); display: inline-block;"
+      >
+        ^
+      </span>
+    </div>
+    <div
+      style="box-sizing: border-box; background: WhiteSmoke; position: absolute; max-height: 450px; overflow-y: scroll; top: 60px; border: 1px solid lightgrey; visibility: hidden;"
+    >
+      <div
+        style="padding: 10px 20px; min-width: 80px; border-bottom: 1px solid Gainsboro;"
+      >
+        <label
+          class="checkboxContainer"
+        >
+          <input
+            id="Testall"
+            name="Testall"
+            type="checkbox"
+            value="all"
+          />
+          <span
+            class="checkmark"
+          />
+          <b>
+            ALL
+          </b>
+        </label>
+      </div>
+      <div
+        style="padding: 10px 20px; min-width: 80px; border-bottom: 1px solid Gainsboro;"
+      >
+        <label
+          class="checkboxContainer"
+        >
+          <input
+            id="Test0"
+            name="Test0"
+            type="checkbox"
+            value="Item1"
+          />
+          <span
+            class="checkmark"
+          />
+          <b>
+            ITEM1
+          </b>
+        </label>
+      </div>
+      <div
+        style="padding: 10px 20px; min-width: 80px; border-bottom: 1px solid Gainsboro;"
+      >
+        <label
+          class="checkboxContainer"
+        >
+          <input
+            id="Test1"
+            name="Test1"
+            type="checkbox"
+            value="Item2"
+          />
+          <span
+            class="checkmark"
+          />
+          <b>
+            ITEM2
+          </b>
+        </label>
+      </div>
+      <div
+        style="padding: 10px 20px; min-width: 80px; border-bottom: 1px solid Gainsboro;"
+      >
+        <label
+          class="checkboxContainer"
+        >
+          <input
+            id="Test2"
+            name="Test2"
+            type="checkbox"
+            value="Item3"
+          />
+          <span
+            class="checkmark"
+          />
+          <b>
+            ITEM3
+          </b>
+        </label>
+      </div>
+    </div>
+    <div
+      style="overflow: hidden; display: block; width: 60px; height: 20px; visibility: hidden;"
+    >
+      <div
+        style="width: 50px; height: 50px; display: block; background: WhiteSmoke; transform: rotate(45deg); border: 1px solid gainsboro; margin-top: 15px; margin-left: 6px; visibility: hidden;"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

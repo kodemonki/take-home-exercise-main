@@ -61,6 +61,8 @@ interface DDProps {
   depth: number;
 }
 
+type VisibilityOptions = 'visible' | 'hidden' | 'collapse' | 'initial' | 'inherit'
+
 const DropDown: React.FC<DDProps> = ({
   title,
   data,
@@ -69,9 +71,7 @@ const DropDown: React.FC<DDProps> = ({
   onChanged,
   depth,
 }) => {
-  const [panelVisibility, setPanelVisibility] = useState(
-    ("hidden" as const) || ("visible" as const)
-  );
+  const [panelVisibility, setPanelVisibility] = useState<VisibilityOptions>("hidden");
   const [selected, setSelected] = useState<string[]>([]);
 
   const handleClick = () => {
