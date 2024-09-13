@@ -58,6 +58,7 @@ const NavBar: React.FC<NavBarProps> = ({
   setGenre,
   setYear,
 }) => {
+  const [clearData, setClearData] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const [openPanel, setOpenPanel] = useState("");
   const handleMediaType = (e: { target: { value: any } }) => {
@@ -76,6 +77,7 @@ const NavBar: React.FC<NavBarProps> = ({
     setFilter("");
     setGenre("");
     setYear("");
+    setClearData(true);
   };
   const openYears = () => {
     setOpenPanel("Years");
@@ -125,6 +127,8 @@ const NavBar: React.FC<NavBarProps> = ({
               onOpen={openGenres}
               onChanged={onChangedGenres}
               depth={2}
+              clearData={clearData}
+              setClearData={setClearData}
             />
             <div style={spacer}></div>
             <DropDown
@@ -136,6 +140,8 @@ const NavBar: React.FC<NavBarProps> = ({
               onOpen={openYears}
               onChanged={onChangedYears}
               depth={1}
+              clearData={clearData}
+              setClearData={setClearData}
             />
             <br />
             <input

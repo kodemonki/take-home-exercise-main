@@ -57,8 +57,10 @@ interface DDProps {
   data: string[];
   onOpen: () => void;
   onChanged: (values: string[]) => void;
+  setClearData:(value:boolean) => void;
   open: boolean;
   depth: number;
+  clearData: boolean;
 }
 
 type VisibilityOptions =
@@ -75,6 +77,9 @@ const DropDown: React.FC<DDProps> = ({
   open,
   onChanged,
   depth,
+  clearData,
+
+  setClearData
 }) => {
   const [panelVisibility, setPanelVisibility] =
     useState<VisibilityOptions>("hidden");
@@ -112,6 +117,13 @@ const DropDown: React.FC<DDProps> = ({
     }
   }, [open]);
 
+  useEffect(() => {
+    if (clearData) {
+      setSelected([]);
+      setClearData(false)
+    } 
+  }, [clearData]);
+
   const allSelected = selected.includes("all");
 
   return (
@@ -123,7 +135,7 @@ const DropDown: React.FC<DDProps> = ({
         {allSelected && <b>{title.toUpperCase()}</b>}
         {!allSelected && (
           <>
-            {selected.length > 0 ? selected.length : ""} {title.toUpperCase()}
+            {selected.length > 0 ? selected.length : ""} <b>{title.toUpperCase()}</b>
           </>
         )}{" "}
         <span style={stretchedChar}>^</span>
