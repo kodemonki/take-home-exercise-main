@@ -109,7 +109,7 @@ const DropDown: React.FC<DDProps> = ({
   return (
     <div style={{ ...container, ...{ zIndex: depth } }}  onMouseLeave={handleMouseLeave}>
       <div onClick={handleClick} style={button}>
-        <b>{selected.length > 0 ? selected.length : ''} {title}</b> <span style={stretchedChar}>^</span>
+        <b>{selected.length > 0 ? selected.length : ''} {title.toUpperCase()}</b> <span style={stretchedChar}>^</span>
       </div>
       <div style={{ ...content, ...{ visibility: panelVisibility } }}>
         <div style={rowItem}>
@@ -122,7 +122,7 @@ const DropDown: React.FC<DDProps> = ({
               onClick={handleSelection}
             />
             <span className="checkmark"></span>
-            <b>all</b>
+            <b>ALL</b>
           </label>
         </div>
         {data.map((item, index) => {
@@ -137,7 +137,7 @@ const DropDown: React.FC<DDProps> = ({
                   onClick={handleSelection}
                 />
                 <span className="checkmark"></span>
-                <b>{item}</b>
+                <b>{item.toUpperCase()}</b>
               </label>
             </div>
           );
