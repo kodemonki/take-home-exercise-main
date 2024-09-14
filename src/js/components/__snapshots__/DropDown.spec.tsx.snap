@@ -6,9 +6,13 @@ exports[`DropDown Component renders DropDown component 1`] = `
     style="display: inline-block; position: relative; z-index: 1;"
   >
     <div
-      style="background: WhiteSmoke; border-bottom: 2px solid LightGrey; padding: 10px 20px; cursor: pointer;"
+      style="background: whiteSmoke; border-bottom: 2px solid LightGrey; padding: 10px 20px; cursor: pointer;"
     >
-       TEST 
+       
+      <b>
+        TEST
+      </b>
+       
       <span
         style="transform: scaleX(2) scaleY(-1) translate(4px,2px); display: inline-block;"
       >
@@ -16,10 +20,10 @@ exports[`DropDown Component renders DropDown component 1`] = `
       </span>
     </div>
     <div
-      style="box-sizing: border-box; background: WhiteSmoke; position: absolute; max-height: 450px; overflow-y: scroll; top: 60px; border: 1px solid lightgrey; visibility: hidden;"
+      style="box-sizing: border-box; background: whiteSmoke; position: absolute; max-height: 450px; overflow-y: scroll; top: 60px; border: 1px solid lightgrey; visibility: hidden;"
     >
       <div
-        style="padding: 10px 20px; min-width: 80px; border-bottom: 1px solid Gainsboro;"
+        style="padding: 10px 20px; min-width: 80px; border-bottom: 1px solid GainsBoro; cursor: pointer;"
       >
         <label
           class="checkboxContainer"
@@ -39,7 +43,7 @@ exports[`DropDown Component renders DropDown component 1`] = `
         </label>
       </div>
       <div
-        style="padding: 10px 20px; min-width: 80px; border-bottom: 1px solid Gainsboro;"
+        style="padding: 10px 20px; min-width: 80px; border-bottom: 1px solid GainsBoro; cursor: pointer;"
       >
         <label
           class="checkboxContainer"
@@ -59,7 +63,7 @@ exports[`DropDown Component renders DropDown component 1`] = `
         </label>
       </div>
       <div
-        style="padding: 10px 20px; min-width: 80px; border-bottom: 1px solid Gainsboro;"
+        style="padding: 10px 20px; min-width: 80px; border-bottom: 1px solid GainsBoro; cursor: pointer;"
       >
         <label
           class="checkboxContainer"
@@ -79,7 +83,7 @@ exports[`DropDown Component renders DropDown component 1`] = `
         </label>
       </div>
       <div
-        style="padding: 10px 20px; min-width: 80px; border-bottom: 1px solid Gainsboro;"
+        style="padding: 10px 20px; min-width: 80px; border-bottom: 1px solid GainsBoro; cursor: pointer;"
       >
         <label
           class="checkboxContainer"
@@ -103,7 +107,7 @@ exports[`DropDown Component renders DropDown component 1`] = `
       style="overflow: hidden; display: block; width: 60px; height: 20px; visibility: hidden;"
     >
       <div
-        style="width: 50px; height: 50px; display: block; background: WhiteSmoke; transform: rotate(45deg); border: 1px solid gainsboro; margin-top: 15px; margin-left: 6px; visibility: hidden;"
+        style="width: 50px; height: 50px; display: block; background: whiteSmoke; transform: rotate(45deg); border: 1px solid gainsboro; margin-top: 15px; margin-left: 6px; visibility: hidden;"
       />
     </div>
   </div>

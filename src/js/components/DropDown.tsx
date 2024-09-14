@@ -95,7 +95,7 @@ const DropDown: React.FC<DDProps> = ({
     }
   };
 
-  const handleSelection = (e: { target: { checked: any; value: string; }; }) => {
+  const handleSelection = (e) => {
     let newArray = [...selected];
     if (e.target.checked) {
       newArray.push(e.target.value);
@@ -118,11 +118,11 @@ const DropDown: React.FC<DDProps> = ({
     }
   }, [open]);
 
-  const handleButtonMouseEnter = (e: { target: { style: { background: string; }; }; }) => {
+  const handleButtonMouseEnter = (e) => {
     e.target.style.background = colours.DarkGrey;
   };
 
-  const handleButtonMouseLeave = (e: { target: { style: { background: string; }; }; }) => {
+  const handleButtonMouseLeave = (e) => {
     e.target.style.background = colours.lightGrey;
   };
 

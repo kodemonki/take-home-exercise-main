@@ -75,7 +75,7 @@ const MovieList: React.FC<MovieListProps> = ({
                   alt={item.title}
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null;
-                    currentTarget.src = `https://dummyimage.com/133x200/000000/ffffff?text=${item.title}`;
+                    currentTarget.src = `https://dummyimage.com/133x200/000000/ffffff?text=${item.title}`; // wouldn't use this in production, but it's ok for a test to replace a missing image
                   }}
                 />
                 <p style={title}>
