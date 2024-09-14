@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import config from "../config";
+import { colours } from "../config";
 
 const container = {
   display: "inline-block",
@@ -7,26 +7,27 @@ const container = {
 };
 
 const button = {
-  background: "WhiteSmoke",
-  borderBottom: "2px solid LightGrey",
+  background: colours.lightGrey,
+  borderBottom: `2px solid ${colours.DarkestGrey}`,
   padding: "10px 20px",
   cursor: "pointer",
 };
 
 const content = {
   boxSizing: "border-box" as const,
-  background: "WhiteSmoke",
+  background: colours.lightGrey,
   position: "absolute" as const,
   maxHeight: "450px",
   overflowY: "scroll" as const,
   top: "60px",
-  border: "1px solid LightGrey",
+  border: `1px solid ${colours.DarkestGrey}`,
 };
 
 const rowItem = {
   padding: "10px 20px",
   minWidth: "80px",
-  borderBottom: "1px solid Gainsboro",
+  borderBottom: `1px solid ${colours.DarkGrey}`,
+  cursor: "pointer",
 };
 
 const stretchedChar = {
@@ -45,9 +46,9 @@ const rotatedSquare = {
   width: "50px",
   height: "50px",
   display: "block",
-  background: "WhiteSmoke",
+  background: colours.lightGrey,
   transform: "rotate(45deg)",
-  border: "1px solid Gainsboro",
+  border: `1px solid ${colours.DarkGrey}`,
   marginTop: "15px",
   marginLeft: "6px",
 };
@@ -57,7 +58,7 @@ interface DDProps {
   data: string[];
   onOpen: () => void;
   onChanged: (values: string[]) => void;
-  setClearData:(value:boolean) => void;
+  setClearData: (value: boolean) => void;
   open: boolean;
   depth: number;
   clearData: boolean;
@@ -79,7 +80,7 @@ const DropDown: React.FC<DDProps> = ({
   depth,
   clearData,
 
-  setClearData
+  setClearData,
 }) => {
   const [panelVisibility, setPanelVisibility] =
     useState<VisibilityOptions>("hidden");
@@ -117,11 +118,19 @@ const DropDown: React.FC<DDProps> = ({
     }
   }, [open]);
 
+  const handleButtonMouseEnter = (e) => {
+    e.target.style.background = colours.DarkGrey;
+  };
+
+  const handleButtonMouseLeave = (e) => {
+    e.target.style.background = colours.lightGrey;
+  };
+
   useEffect(() => {
     if (clearData) {
       setSelected([]);
-      setClearData(false)
-    } 
+      setClearData(false);
+    }
   }, [clearData]);
 
   const allSelected = selected.includes("all");
@@ -135,13 +144,18 @@ const DropDown: React.FC<DDProps> = ({
         {allSelected && <b>{title.toUpperCase()}</b>}
         {!allSelected && (
           <>
-            {selected.length > 0 ? selected.length : ""} <b>{title.toUpperCase()}</b>
+            {selected.length > 0 ? selected.length : ""}{" "}
+            <b>{title.toUpperCase()}</b>
           </>
         )}{" "}
         <span style={stretchedChar}>^</span>
       </div>
       <div style={{ ...content, ...{ visibility: panelVisibility } }}>
-        <div style={rowItem}>
+        <div
+          style={rowItem}
+          onMouseEnter={handleButtonMouseEnter}
+          onMouseLeave={handleButtonMouseLeave}
+        >
           <label className="checkboxContainer">
             <input
               type="checkbox"
@@ -156,7 +170,12 @@ const DropDown: React.FC<DDProps> = ({
         </div>
         {data.map((item, index) => {
           return (
-            <div key={item} style={rowItem}>
+            <div
+              key={item}
+              style={rowItem}
+              onMouseEnter={handleButtonMouseEnter}
+              onMouseLeave={handleButtonMouseLeave}
+            >
               <label className="checkboxContainer">
                 <input
                   type="checkbox"

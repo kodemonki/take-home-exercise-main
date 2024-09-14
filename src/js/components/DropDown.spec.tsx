@@ -17,8 +17,9 @@ describe("DropDown Component", () => {
         onOpen={onOpen}
         onChanged={onChanged}
         open={false}
-        depth={depth}
-      />
+        depth={depth} setClearData={function (value: boolean): void {
+          throw new Error("Function not implemented.");
+        } } clearData={false}      />
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -31,8 +32,9 @@ describe("DropDown Component", () => {
         onOpen={onOpen}
         onChanged={onChanged}
         open={false}
-        depth={depth}
-      />
+        depth={depth} setClearData={function (value: boolean): void {
+          throw new Error("Function not implemented.");
+        } } clearData={false}      />
     );
 
     const button = screen.getByText(/TEST/i);
@@ -52,8 +54,9 @@ describe("DropDown Component", () => {
         onOpen={onOpen}
         onChanged={onChanged}
         open={false}
-        depth={depth}
-      />
+        depth={depth} setClearData={function (value: boolean): void {
+          throw new Error("Function not implemented.");
+        } } clearData={false}      />
     );
 
     const checkbox = screen.getByLabelText(/ITEM1/i);
@@ -72,8 +75,9 @@ describe("DropDown Component", () => {
         onOpen={onOpen}
         onChanged={onChanged}
         open={true}
-        depth={depth}
-      />
+        depth={depth} setClearData={function (value: boolean): void {
+          throw new Error("Function not implemented.");
+        } } clearData={false}      />
     );
 
     const container = screen.getByText(/TEST/i).parentElement;

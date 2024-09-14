@@ -3,9 +3,8 @@ const router = express.Router();
 const localData = require("../../../src/js/data.json");
 let data;
 
-
 const getData = async () => {
-  //basic cache
+  //basic cache should impliment Redis if time
   if (data === undefined) {
     try {
       const response = await fetch(
@@ -75,6 +74,12 @@ router.route("/media/paginate/").get(async (req, res) => {
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     let filteredData = [...data.media];
+
+    /*
+      I apreciate doing all this filtering in one sweep would be more efficient
+      but for the sake of time and simplicity I will do it in steps. It also makes it 
+      easier to debug and maintain.
+    */
 
     if (year !== "" && year !== "all" && year !== "undefined") {
       if (!year.includes("all")) {

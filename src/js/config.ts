@@ -35,4 +35,10 @@ export const routes = {
   genres: "genres",
 };
 
+export const colours = {
+  lightGrey: "whiteSmoke",
+  DarkGrey: "GainsBoro",
+  DarkestGrey: "LightGrey",
+};
+
 export default config;
