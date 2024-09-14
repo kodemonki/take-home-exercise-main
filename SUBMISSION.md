@@ -12,6 +12,7 @@ We've provided some questions to help guide you, but feel free to include any ad
 * Generally, it's best in large projects to build off an existing component library like Atom or MUI... but to save time I built things from scratch as the scope was limited.
 * I avoided a CSS library... as performance was mentioned, JSON object and style properties are the most performant in benchmarking... you can pretty much achieve everything this way and it's faster... but in a larger project, I would factor in the team's knowledge and project conventions and use something like StyledComponents.
 * I would have used a different approach for styling the checkbox in the dropdown... it looks good, but the keyboard focus doesn't show when in keyboard control. I left in the HTML code using `<Select><Option>` which has better keyboard control... but does not match the design. I would make this component from scratch in React given time or base it off a MUI one.
+* I tested it in chrome and firefox mostly but i saw there was a minor css issue in safari the triangle is slightly off... but ran out of time.
 
 ## Did you deviate from the instructions? If so, why?
 
