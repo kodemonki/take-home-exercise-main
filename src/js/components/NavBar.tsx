@@ -104,7 +104,7 @@ const NavBar: React.FC<NavBarProps> = ({
       >
         <div style={formContainer}>
           <div style={leftForm}>
-            {/* Native Select component approach
+            {/* Native Select component approach has better keyboard control but doesnt look right
             <select onChange={handleGenre} aria-label="genre">
               <option key={"all"}>all</option>
               {config.genres.map((item) => {
