@@ -24,7 +24,7 @@ describe('NavBar', () => {
     render(<NavBar setMediaType={jest.fn()} setFilter={jest.fn()} setGenre={setGenreMock} setYear={jest.fn()} />);
     
     fireEvent.click(screen.getByText('GENRES'));
-    fireEvent.click(screen.getByText('ACTION')); // Assuming 'Action' is a genre in config.genres
+    fireEvent.click(screen.getByText('ACTION'));
     expect(setGenreMock).toHaveBeenCalled();
   });
 
@@ -33,7 +33,7 @@ describe('NavBar', () => {
     render(<NavBar setMediaType={jest.fn()} setFilter={jest.fn()} setGenre={jest.fn()} setYear={setYearMock} />);
     
     fireEvent.click(screen.getByText('YEARS'));
-    fireEvent.click(screen.getByText('1990')); // Assuming '1990' is a year in the dropdown
+    fireEvent.click(screen.getByText('1990'));
     expect(setYearMock).toHaveBeenCalled();
   });
 

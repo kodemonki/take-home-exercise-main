@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { colours } from "../config";
 
 export interface Media {
   title: string;
@@ -26,28 +27,28 @@ const image = {
 };
 const title = {
   maxWidth: "240px",
-  marginTop: '10px',
-  marginBottom: '0px',
-  fontSize: '16px'
+  marginTop: "10px",
+  marginBottom: "0px",
+  fontSize: "16px",
 };
 const genres = {
   maxWidth: "240px",
-  marginTop: '5px',
-  fontSize: '14px'
+  marginTop: "5px",
+  fontSize: "14px",
 };
 const movieListContainer = {
   display: "flex",
   flexWrap: "wrap" as const,
   alignItems: "center",
   justifyContent: "space-around",
-  border:"1px solid Gainsboro",
+  border: `1px solid ${colours.DarkGrey}`,
   padding: "20px",
 };
 const movieListItem = {};
 const pagination = {
   width: "100%",
   textAlign: "center" as const,
-  marginBottom:'20px'
+  marginBottom: "20px",
 };
 const paginationInner = {
   paddingLeft: "10px",
@@ -77,8 +78,14 @@ const MovieList: React.FC<MovieListProps> = ({
                     currentTarget.src = `https://dummyimage.com/133x200/000000/ffffff?text=${item.title}`;
                   }}
                 />
-                <p style={title}><b>{item.title} ({item.year})</b></p>
-                <p style={genres}><b>Genres: {item.genre.join(", ")}</b></p>
+                <p style={title}>
+                  <b>
+                    {item.title} ({item.year})
+                  </b>
+                </p>
+                <p style={genres}>
+                  <b>Genres: {item.genre.join(", ")}</b>
+                </p>
               </div>
             </React.Fragment>
           );
@@ -96,7 +103,9 @@ const MovieList: React.FC<MovieListProps> = ({
           <b>Prev Page</b>
         </button>
         <span style={paginationInner}>
-          <b>Page {page} of {data.totalPages}</b>
+          <b>
+            Page {page} of {data.totalPages}
+          </b>
         </span>
         <button
           onClick={() => {

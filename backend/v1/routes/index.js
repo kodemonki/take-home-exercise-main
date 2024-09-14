@@ -7,9 +7,7 @@ const getData = async () => {
   //basic cache should impliment Redis if time
   if (data === undefined) {
     try {
-      const response = await fetch(
-        "https://drive.google.com/uc?export=view&id=1c7MKP-vr3r_64aiW7TAM2VxKRP7jK-4I"
-      );
+      const response = await fetch(process.env.DATA_API_URL);
       if (response.ok) {
         data = await response.json();
       } else {
@@ -18,7 +16,7 @@ const getData = async () => {
       }
     } catch (error) {
       //handle error
-        data = localData;
+      data = localData;
     }
   }
 };
@@ -51,7 +49,7 @@ router.route("/years/").get(async (req, res) => {
 
   let results = [];
   data.media.forEach((element) => {
-    results.push(element.year);   
+    results.push(element.year);
   });
   const unique = [...new Set(results)];
   res.json(unique);
@@ -63,10 +61,11 @@ router.route("/media/paginate/").get(async (req, res) => {
   const page = parseInt(req.query.page);
   const limit = parseInt(req.query.limit);
 
-  const filter = String(req.query.filter); // should sanitize this value in a real app
-  const mediaType = String(req.query.mediaType); // should sanitize this value in a real app
-  const genre = String(req.query.genre); // should sanitize this value in a real app
-  const year = String(req.query.year); // should sanitize this value in a real app
+  //shou sanitize these inputs more throughly in a real app
+  const filter = String(req.query.filter); 
+  const mediaType = String(req.query.mediaType); 
+  const genre = String(req.query.genre);
+  const year = String(req.query.year); 
 
   if (isNaN(page) || isNaN(limit)) {
     res.status(500).json({ message: "Error : missing page and limit values" });
@@ -81,7 +80,8 @@ router.route("/media/paginate/").get(async (req, res) => {
       easier to debug and maintain.
     */
 
-    if (year !== "" && year !== "all" && year !== "undefined") {
+    // Year filtering
+    if (year !== "" && year !== "undefined") {
       if (!year.includes("all")) {
         const yearArray = year.split(",");
         filteredData = filteredData.filter((media) => {
@@ -96,6 +96,7 @@ router.route("/media/paginate/").get(async (req, res) => {
       }
     }
 
+    // Genre filtering
     if (genre !== "" && genre !== "undefined") {
       if (!genre.includes("all")) {
         const genreArray = genre.split(",");
@@ -111,11 +112,13 @@ router.route("/media/paginate/").get(async (req, res) => {
       }
     }
 
+    // Media type filtering
     if (mediaType !== "all" && mediaType !== "undefined") {
       filteredData = filteredData.filter((media) => media.type === mediaType);
     }
 
-    // Fuzzy search
+    // Fuzzy search : given more time i would make it split each word into halves which 
+    // would allow for single words that were mispelled so "poter" would match with "Harry Potter"
     if (filter !== "" && filter !== "undefined") {
       filteredData = filteredData.filter((media) => {
         let chunks = filter.split(" ");

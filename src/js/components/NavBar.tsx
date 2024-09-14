@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import config from "../config";
+import config, { colours } from "../config";
 import DropDown from "./DropDown";
 
 const leftForm = {
@@ -32,9 +32,9 @@ const searchIcon = {
   top: "10px",
 };
 const navbarContainer = {
-  borderLeft: "1px solid Gainsboro",
-  borderRight: "1px solid Gainsboro",
-  borderTop: "1px solid Gainsboro",
+  borderLeft: `1px solid ${colours.DarkGrey}`,
+  borderRight: `1px solid ${colours.DarkGrey}`,
+  borderTop: `1px solid ${colours.DarkGrey}`,
   padding: "20px",
 };
 const navBar__input = {
