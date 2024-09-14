@@ -64,19 +64,24 @@ const MovieList: React.FC<MovieListProps> = ({
   return (
     <>
       <div style={movieListContainer}>
-        {data?.results?.length === 0 && <p><b>Loading</b></p>}
-        {data?.results?.map((item) => {
+        {data?.results?.length === 0 && (
+          <p>
+            <b>Loading</b>
+          </p>
+        )}
+        {data?.results?.map((item, index) => {
           return (
             <React.Fragment key={item.title}>
               <div style={movieListItem}>
                 <img
                   src={item.poster}
-                  style={image}
+                  style={{ ...image, ...{ animationDelay: `${index/4}s` } }}
                   alt={item.title}
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null;
                     currentTarget.src = `https://dummyimage.com/133x200/000000/ffffff?text=${item.title}`; // wouldn't use this in production, but it's ok for a test to replace a missing image
                   }}
+                  className="fadeIn"
                 />
                 <p style={title}>
                   <b>

@@ -2,10 +2,16 @@ const express = require("express");
 const router = express.Router();
 const localData = require("../../../src/js/data.json");
 let data;
+let lastUpdatedAt;
+
+const isOutdated = () => {
+  return Date.now() - lastUpdatedAt >= 1000 * 60 * 60 // 1 hour
+}
 
 const getData = async () => {
-  //basic cache should impliment Redis if time
-  if (data === undefined) {
+  //basic cache should impliment Redis or similar for a real app
+  if (data === undefined || isOutdated()) {
+    lastUpdatedAt = Date.now()
     try {
       const response = await fetch(process.env.DATA_API_URL);
       if (response.ok) {
