@@ -47,11 +47,11 @@ button {
   position: absolute;
   top: 0;
   left: 0;
-  height: 20px;
-  width: 20px;
+  height: 16px;
+  width: 16px;
   background-color: white;
   border: 1px solid Gainsboro;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 /* On mouse-over, add a grey background color */
@@ -80,8 +80,8 @@ button {
 
 /* Style the checkmark/indicator */
 .checkboxContainer .checkmark:after {
-  left: 6px;
-  top: 3px;
+  left: 4px;
+  top: 1px;
   width: 5px;
   height: 10px;
   border: solid grey;

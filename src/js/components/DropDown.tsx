@@ -8,6 +8,7 @@ const container = {
 
 const button = {
   background: colours.lightGrey,
+  border: `1px solid ${colours.DarkGrey} `,
   borderBottom: `2px solid ${colours.DarkestGrey}`,
   padding: "10px 20px",
   cursor: "pointer",
@@ -19,7 +20,7 @@ const content = {
   position: "absolute" as const,
   maxHeight: "450px",
   overflowY: "scroll" as const,
-  top: "60px",
+  top: "57px",
   border: `1px solid ${colours.DarkestGrey}`,
 };
 
@@ -140,7 +141,7 @@ const DropDown: React.FC<DDProps> = ({
       style={{ ...container, ...{ zIndex: depth } }}
       onMouseLeave={handleMouseLeave}
     >
-      <div onClick={handleClick} style={button}>
+      <button onClick={handleClick} style={button}>
         {allSelected && <b>{title.toUpperCase()}</b>}
         {!allSelected && (
           <>
@@ -149,7 +150,7 @@ const DropDown: React.FC<DDProps> = ({
           </>
         )}{" "}
         <span style={stretchedChar}>^</span>
-      </div>
+      </button>
       <div style={{ ...content, ...{ visibility: panelVisibility } }}>
         <div
           style={rowItem}
