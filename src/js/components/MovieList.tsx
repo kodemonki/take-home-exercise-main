@@ -75,13 +75,13 @@ const MovieList: React.FC<MovieListProps> = ({
               <div style={movieListItem}>
                 <img
                   src={item.poster}
-                  style={{ ...image, ...{ animationDelay: `${index/4}s` } }}
+                  style={image}
                   alt={item.title}
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null;
                     currentTarget.src = `https://dummyimage.com/133x200/000000/ffffff?text=${item.title}`; // wouldn't use this in production, but it's ok for a test to replace a missing image
                   }}
-                  className="fadeIn"
+                  
                 />
                 <p style={title}>
                   <b>

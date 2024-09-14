@@ -62,7 +62,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className="fadeIn">
       <NavBar
         setMediaType={updateMediaType}
         setFilter={updateFilter}
@@ -75,7 +75,7 @@ function App() {
         nextPage={nextPage}
         prevPage={prevPage}
       />
-    </>
+    </div>
   );
 }
 

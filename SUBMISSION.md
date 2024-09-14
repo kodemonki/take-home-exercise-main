@@ -15,12 +15,13 @@ We've provided some questions to help guide you, but feel free to include any ad
 * I tested it in chrome and firefox mostly but i saw there was a minor css issue in safari the triangle in the dropdown panel is slightly off by a couple of pixels... but ran out of time.
 * A production Api should have Logging, Monitoring and some kind of online documentaion like swagger... I would have liked to add these.
 * The inputs should have been sanitzed in a more secure way on the query string parameters, to prevent malicous code injection.
+* I would implement a CSP fo added security to prevent cross site scription attacks.
 
 ## Did you deviate from the instructions? If so, why?
 
 * There was a bit of a contradiction... the requirements talked about an All option for the radio buttons... but in the design, this was missing... it's usually impossible to deselect a radio button... so I assumed this was a bit of a challenge. The easy way would be to add an All option, but I used a useRef and reset the whole form which achieved this without the need to deviate from the design and then in the code made it default to all.
 * I added a Loading message to help with unit tests to check data was loaded successfully.
-* I added some animations because they looked cool :)
+* I implimented 2 endpoints on the api that were not in the requirements, these were for getting the lookup values for the dropdowns... I have used this approach in the past, and left them in as I was debating using them and making the dropdown lists dynamic but didnt get around to it.
 
 ## What part of the exercise did you find the biggest challenge, and why?
 
