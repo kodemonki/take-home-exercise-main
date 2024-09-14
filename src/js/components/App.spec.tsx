@@ -21,7 +21,7 @@ describe("App", () => {
 
   it("should render initial state correctly", async () => {
     render(<App />);
-    expect(screen.getByText("Loading")).toBeTruthy();
+    expect(screen.getByText("Loading")).toBeTruthy();    
     await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
   });
 
@@ -29,7 +29,10 @@ describe("App", () => {
     render(<App />);
     expect(screen.getByText("Loading")).toBeTruthy();
     await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
+
     fireEvent.click(screen.getByText("Next Page"));
+
+    expect(screen.getByText("Loading")).toBeTruthy();
     await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
   });
 
@@ -37,8 +40,11 @@ describe("App", () => {
     render(<App />);
     expect(screen.getByText("Loading")).toBeTruthy();
     await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
+
     fireEvent.click(screen.getByText("Next Page"));
     fireEvent.click(screen.getByText("Prev Page"));
+
+    expect(screen.getByText("Loading")).toBeTruthy();
     await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
   });
 
