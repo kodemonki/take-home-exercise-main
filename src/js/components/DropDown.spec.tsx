@@ -17,9 +17,12 @@ describe("DropDown Component", () => {
         onOpen={onOpen}
         onChanged={onChanged}
         open={false}
-        depth={depth} setClearData={function (value: boolean): void {
+        depth={depth}
+        setClearData={function (value: boolean): void {
           throw new Error("Function not implemented.");
-        } } clearData={false}      />
+        }}
+        clearData={false}
+      />
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -32,18 +35,20 @@ describe("DropDown Component", () => {
         onOpen={onOpen}
         onChanged={onChanged}
         open={false}
-        depth={depth} setClearData={function (value: boolean): void {
+        depth={depth}
+        setClearData={function (value: boolean): void {
           throw new Error("Function not implemented.");
-        } } clearData={false}      />
+        }}
+        clearData={false}
+      />
     );
 
     const button = screen.getByText(/TEST/i);
     fireEvent.click(button);
     expect(onOpen).toHaveBeenCalled();
-    //expect(screen.getByText(/ALL/i).parentElement?.parentElement).toHaveStyle("visibility: visible"); // Use the toHaveStyle matcher
 
-    fireEvent.click(button);
-    //expect(screen.getByText(/ALL/i).parentElement?.parentElement).toHaveStyle("visibility: hidden"); // Use the toHaveStyle matcher
+    const styles1 = getComputedStyle(button.parentElement.children[1]);
+    expect(styles1.visibility).toBe("visible");
   });
 
   test("calls onChanged with correct values on item selection", () => {
@@ -54,9 +59,12 @@ describe("DropDown Component", () => {
         onOpen={onOpen}
         onChanged={onChanged}
         open={false}
-        depth={depth} setClearData={function (value: boolean): void {
+        depth={depth}
+        setClearData={function (value: boolean): void {
           throw new Error("Function not implemented.");
-        } } clearData={false}      />
+        }}
+        clearData={false}
+      />
     );
 
     const checkbox = screen.getByLabelText(/ITEM1/i);
@@ -75,13 +83,18 @@ describe("DropDown Component", () => {
         onOpen={onOpen}
         onChanged={onChanged}
         open={true}
-        depth={depth} setClearData={function (value: boolean): void {
+        depth={depth}
+        setClearData={function (value: boolean): void {
           throw new Error("Function not implemented.");
-        } } clearData={false}      />
+        }}
+        clearData={false}
+      />
     );
 
     const container = screen.getByText(/TEST/i).parentElement;
     fireEvent.mouseLeave(container);
-   // expect(screen.getByText(/ALL/i).parentElement?.parentElement).toHaveStyle("visibility: hidden"); // Use the toHaveStyle matcher
+
+    const styles = getComputedStyle(container.parentElement.children[1]);
+    expect(styles.visibility).toBe("hidden");
   });
 });

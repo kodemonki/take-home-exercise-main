@@ -75,7 +75,7 @@ router.route("/media/paginate/").get(async (req, res) => {
     let filteredData = [...data.media];
 
     /*
-      I apreciate doing all this filtering in one sweep would be more efficient
+      I appreciate doing all this filtering in one sweep would be more efficient
       but for the sake of time and simplicity I will do it in steps. It also makes it 
       easier to debug and maintain.
     */
