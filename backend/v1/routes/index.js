@@ -61,7 +61,7 @@ router.route("/media/paginate/").get(async (req, res) => {
   const page = parseInt(req.query.page);
   const limit = parseInt(req.query.limit);
 
-  //shou sanitize these inputs more throughly in a real app
+  //should sanitize these inputs more throughly in a real app
   const filter = String(req.query.filter); 
   const mediaType = String(req.query.mediaType); 
   const genre = String(req.query.genre);
@@ -119,6 +119,8 @@ router.route("/media/paginate/").get(async (req, res) => {
 
     // Fuzzy search : given more time i would make it split each word into halves which 
     // would allow for single words that were mispelled so "poter" would match with "Harry Potter"
+    // but it meets the requirements of the task "Hary potter" will match with "Harry Potter".
+    // I figured it's a matter of taste how fuzzy it should be.
     if (filter !== "" && filter !== "undefined") {
       filteredData = filteredData.filter((media) => {
         let chunks = filter.split(" ");
