@@ -92,7 +92,7 @@ const NavBar: React.FC<NavBarProps> = ({
     setGenre(values);
   };
   return (
-    <div style={navbarContainer} className="fadeIn">
+    <div style={navbarContainer} >
       <form
         ref={formRef}
         onSubmit={(e) => {
